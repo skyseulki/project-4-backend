@@ -28,12 +28,13 @@ class User(UserMixin, Model):
             user.save()
             return user
         else:
-            return 'User with that email already exists'
+            raise Exception('Email is already in use')
+            # return 'User with that email already exists'
 
 class Post(Model):
     title = CharField()
     review = CharField()
-    created_at = DateTimeField(default=datetime.datetime.now)
+    # created_at = DateTimeField(default=datetime.datetime.now)
 
     class Meta:
         database = DATABASE

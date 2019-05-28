@@ -15,26 +15,26 @@ class UserList(Resource):
         self.reqparse = reqparse.RequestParser()
         self.reqparse.add_argument(
             'username',
-            required=False,
-            help='username does not exist',
+            required=True,
+            help='No username provided',
             location=['form', 'json']
         )
         self.reqparse.add_argument(
             'password',
-            required=False,
+            required=True,
             help='No password provided',
             location=['form', 'json']
         )
         self.reqparse.add_argument(
             'verify_password',
-            required=False,
+            required=True,
             help='No password verification provided',
             location=['form', 'json']
         )
         super().__init__()
     
-    def get(self):
-        return jsonify({'users': [{'username': 'Franklin'}]})
+    # def get(self):
+    #     return jsonify({'users': [{'username': 'Franklin'}]})
 
     def post(self):
         args = self.reqparse.parse_args()
@@ -50,8 +50,21 @@ class UserList(Resource):
 
 
 class User(Resource):
-    def get(self, id):
-        return jsonify({'username': 'Franklin'})
+    def __init__(self):
+        self.reqparse = reqparse.RequestParser()
+        self.reqparse.add_argument(
+            'username',
+            required=True,
+            help='No username provided',
+            location=['form', 'json']
+        )
+        self.reqparse.add_argument(
+            'password',
+            required=True,
+            help='No password provided',
+            location=['form', 'json']
+        )
+        super().__init__()
     
     def put(self, id):
         return jsonify({'username': 'Franklin'})
@@ -67,5 +80,10 @@ api = Api(users_api)
 api.add_resource(
     UserList,
     '/registration'
+)
+
+api.add_resource(
+    User,
+    '/login'
 )
 
