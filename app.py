@@ -5,6 +5,7 @@ import models
 import config
 
 from resources.users import users_api
+from resources.posts import posts_api
 
 login_manager = LoginManager()
 ## sets up our login for the app
@@ -14,7 +15,8 @@ login_manager = LoginManager()
 app = Flask(__name__)
 app.secret_key = config.SECRET_KEY
 login_manager.init_app(app)
-app.register_blueprint(users_api, url_prefix='/api/v1')
+app.register_blueprint(users_api, url_prefix='/users')
+app.register_blueprint(posts_api, url_prefix='/api/v1')
 
 @app.before_request
 def before_request():

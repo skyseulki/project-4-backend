@@ -1,3 +1,4 @@
+
 from flask import jsonify, Blueprint, abort
 from flask_restful import (Resource, Api, reqparse, fields, marshal, marshal_with, url_for)
 
@@ -67,15 +68,13 @@ class Post(Resource):
     @marshal_with(post_fields)
     def put(self, id):
         args = self.reqparse.parse_args()
-        query = models.Post.update(**args).where
-        (models.Post.id==id)
+        query = models.Post.update(**args).where(models.Post.id==id)
         query.execute()
         return (models.Post.get(models.Post.id==id),
         200)
     
     def delete(self, id):
-        query = models.Post.delete().where
-        (models.Post.id==id)
+        query = models.Post.delete().where(models.Post.id==id)
         query.execute()
         return 'post deleted'
 
@@ -87,7 +86,7 @@ api.add_resource(
     '/posts'
 )
 
-app.add_resource(
+api.add_resource(
     Post,
-    '/post/<int:id>'
+    '/posts/<int:id>'
 )

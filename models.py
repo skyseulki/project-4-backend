@@ -4,7 +4,6 @@ from peewee import *
 from flask_bcrypt import generate_password_hash
 from flask_login import UserMixin
 
-import config
 
 DATABASE = SqliteDatabase('posts.sqlite')
 
@@ -29,9 +28,17 @@ class User(UserMixin, Model):
             user.save()
             return user
         else:
-            raise Exception('User with that email already exists')
+            return 'User with that email already exists'
+
+class Post(Model):
+    title = CharField()
+    review = CharField()
+    created_at = DateTimeField(default=datetime.datetime.now)
+
+    class Meta:
+        database = DATABASE
 
 def initialize():
     DATABASE.connect()
-    DATABASE.create_tables([User], safe=True)
+    DATABASE.create_tables([User, Post], safe=True)
     DATABASE.close()
