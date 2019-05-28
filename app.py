@@ -15,6 +15,7 @@ login_manager = LoginManager()
 app = Flask(__name__)
 app.secret_key = config.SECRET_KEY
 login_manager.init_app(app)
+
 app.register_blueprint(users_api, url_prefix='/users')
 app.register_blueprint(posts_api, url_prefix='/api/v1')
 
