@@ -31,10 +31,20 @@ class UserList(Resource):
             help='No password verification provided',
             location=['form', 'json']
         )
+        self.reqparse.add_argument(
+            'email',
+            required=True,
+            help='No email Provided',
+            location=['form', 'json']
+        )
         super().__init__()
-    
+
     # def get(self):
     #     return jsonify({'users': [{'username': 'Franklin'}]})
+
+    def get(self):
+        posts = [marshal(user, user_fields) for user in models.User.select()]
+        return posts
 
     def post(self):
         args = self.reqparse.parse_args()
@@ -65,8 +75,6 @@ class User(Resource):
             location=['form', 'json']
         )
         super().__init__()
-    
-    # def post(self, id)
     def put(self, id):
         return jsonify({'username': 'Franklin'})
 
@@ -88,3 +96,5 @@ api.add_resource(
     '/login'
 )
 
+
+#just to commit
