@@ -75,7 +75,6 @@ class User(Resource):
             location=['form', 'json']
         )
         super().__init__()
-
     def put(self, id):
         return jsonify({'username': 'Franklin'})
 

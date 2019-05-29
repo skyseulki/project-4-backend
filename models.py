@@ -32,8 +32,12 @@ class User(UserMixin, Model):
             # return 'User with that email already exists'
 
 class Post(Model):
-    title = CharField()
+    name = CharField()
+    address = CharField()
+    cuisine = CharField()
+    picture = CharField()
     review = CharField()
+    cost = CharField()
     # created_at = DateTimeField(default=datetime.datetime.now)
 
     class Meta:

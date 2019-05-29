@@ -6,8 +6,12 @@ import models
 
 post_fields = {
     'id': fields.Integer,
-    'title': fields.String,
-    'review': fields.String
+    'name': fields.String,
+    'address': fields.String,
+    'cuisine': fields.String,
+    'picture': fields.String,
+    'review': fields.String,
+    'cost': fields.String
 }
 
 class PostList(Resource):
@@ -15,13 +19,37 @@ class PostList(Resource):
         self.reqparse = reqparse.RequestParser()
 
         self.reqparse.add_argument(
-            'title',
+            'name',
             required=False,
             help='No title provided',
             location=['form', 'json']
         )
         self.reqparse.add_argument(
+            'address',
+            required=False,
+            help='No review provided',
+            location=['form', 'json']
+        )
+        self.reqparse.add_argument(
+            'cuisine',
+            required=False,
+            help='No review provided',
+            location=['form', 'json']
+        )
+        self.reqparse.add_argument(
+            'picture',
+            required=False,
+            help='No review provided',
+            location=['form', 'json']
+        )
+        self.reqparse.add_argument(
             'review',
+            required=False,
+            help='No review provided',
+            location=['form', 'json']
+        )
+        self.reqparse.add_argument(
+            'cost',
             required=False,
             help='No review provided',
             location=['form', 'json']
@@ -42,13 +70,37 @@ class Post(Resource):
     def __init__(self):
         self.reqparse = reqparse.RequestParser()
         self.reqparse.add_argument(
-            'title',
+            'name',
             required=False,
             help='No title provided',
             location=['form', 'json']
         )
         self.reqparse.add_argument(
+            'address',
+            required=False,
+            help='No review provided',
+            location=['form', 'json']
+        )
+        self.reqparse.add_argument(
+            'cuisine',
+            required=False,
+            help='No review provided',
+            location=['form', 'json']
+        )
+        self.reqparse.add_argument(
+            'picture',
+            required=False,
+            help='No review provided',
+            location=['form', 'json']
+        )
+        self.reqparse.add_argument(
             'review',
+            required=False,
+            help='No review provided',
+            location=['form', 'json']
+        )
+        self.reqparse.add_argument(
+            'cost',
             required=False,
             help='No review provided',
             location=['form', 'json']
