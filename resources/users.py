@@ -75,7 +75,7 @@ class User(Resource):
             location=['form', 'json']
         )
         super().__init__()
-<<<<<<< HEAD
+
 
     def post(self):
         try:
@@ -101,8 +101,7 @@ class User(Resource):
                 }), 200)
 
 
-=======
->>>>>>> master
+
     def put(self, id):
         return jsonify({'username': 'Franklin'})
 
