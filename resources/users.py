@@ -92,12 +92,12 @@ class User(Resource):
                     return make_response(
                         json.dumps({
                             'message': 'incorrect password'
-                        }), 200)
+                        }), 401)
         except models.User.DoesNotExist:
             return make_response(
                 json.dumps({
                     'message': 'Username does not exist'
-                }), 200)
+                }), 400)
 
 
     def put(self, id):

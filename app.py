@@ -6,6 +6,7 @@ import config
 
 from resources.users import users_api
 from resources.posts import posts_api
+from resources.commentRev import comment_api
 
 login_manager = LoginManager()
 ## sets up our login for the app
@@ -16,9 +17,11 @@ app = Flask(__name__)
 app.secret_key = config.SECRET_KEY
 login_manager.init_app(app)
 CORS(posts_api, origins=["http://localhost:3000"], supports_credentials=True)
+CORS(comment_api, origins=["http://localhost:3000"], supports_credentials=True)
 CORS(users_api, origins= ["http://localhost:3000"], supports_credentials=True)
 app.register_blueprint(users_api, url_prefix='/users')
 app.register_blueprint(posts_api, url_prefix='/api/v1')
+app.register_blueprint(comment_api, url_prefix='/comment')
 
 @app.before_request
 def before_request():

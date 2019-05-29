@@ -43,7 +43,14 @@ class Post(Model):
     class Meta:
         database = DATABASE
 
+class CommentRev(Model):
+    comments = CharField()
+    user = ForeignKeyField(User, related_name='commentrevs')
+
+    class Meta:
+        database = DATABASE
+
 def initialize():
     DATABASE.connect()
-    DATABASE.create_tables([User, Post], safe=True)
+    DATABASE.create_tables([User, Post, CommentRev], safe=True)
     DATABASE.close()
