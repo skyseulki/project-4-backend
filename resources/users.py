@@ -76,7 +76,6 @@ class User(Resource):
         )
         super().__init__()
 
-
     def post(self):
         try:
             args = self.reqparse.parse_args()
@@ -99,7 +98,6 @@ class User(Resource):
                 json.dumps({
                     'message': 'Username does not exist'
                 }), 200)
-
 
 
     def put(self, id):
