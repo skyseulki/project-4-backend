@@ -66,6 +66,7 @@ class User(Resource):
         )
         super().__init__()
     
+    # def post(self, id)
     def put(self, id):
         return jsonify({'username': 'Franklin'})
 
