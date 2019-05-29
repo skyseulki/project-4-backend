@@ -12,6 +12,7 @@ post_fields = {
     'picture': fields.String,
     'review': fields.String,
     'cost': fields.String
+
 }
 
 class PostList(Resource):
@@ -55,11 +56,11 @@ class PostList(Resource):
             location=['form', 'json']
         )
         super().__init__()
-    
+
     def get(self):
         posts = [marshal(post, post_fields) for post in models.Post.select()]
         return posts
-    
+
     @marshal_with(post_fields)
     def post(self):
         args = self.reqparse.parse_args()
@@ -106,7 +107,7 @@ class Post(Resource):
             location=['form', 'json']
         )
         super().__init__()
-    
+
     @marshal_with(post_fields)
     def get(self, id):
         try:
@@ -115,14 +116,14 @@ class Post(Resource):
             abort (404)
         else:
             return post
-    
+
     @marshal_with(post_fields)
     def put(self, id):
         args = self.reqparse.parse_args()
         query = models.Post.update(**args).where(models.Post.id==id)
         query.execute()
         return (models.Post.get(models.Post.id==id), 200)
-    
+
     def delete(self, id):
         query = models.Post.delete().where(models.Post.id==id)
         query.execute()
