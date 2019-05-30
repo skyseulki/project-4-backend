@@ -6,7 +6,9 @@ import models
 commentRev_fields = {
     'id' : fields.Integer,
     'comments': fields.String,
-    'user': fields.String
+    'userId': fields.String,
+    'postId': fields.String,
+    'username': fields.String
 }
 
 class CommentPost(Resource):
@@ -21,7 +23,21 @@ class CommentPost(Resource):
         )
 
         self.reqparse.add_argument(
-            'user',
+            'userId',
+            required=False,
+            help='No title provided',
+            location=['form', 'json']
+        )
+
+        self.reqparse.add_argument(
+            'postId',
+            required=False,
+            help='No title provided',
+            location=['form', 'json']
+        )
+
+        self.reqparse.add_argument(
+            'username',
             required=False,
             help='No title provided',
             location=['form', 'json']

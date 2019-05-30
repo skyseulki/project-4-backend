@@ -7,6 +7,7 @@ from flask_bcrypt import check_password_hash
 import models
 
 user_fields = {
+    'id': fields.Integer,
     'username': fields.String,
 }
 

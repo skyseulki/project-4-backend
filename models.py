@@ -45,7 +45,9 @@ class Post(Model):
 
 class CommentRev(Model):
     comments = CharField()
-    user = ForeignKeyField(User, related_name='commentrevs')
+    username = CharField()
+    userId = ForeignKeyField(User, related_name='commentrevs')
+    postId = ForeignKeyField(Post, related_name='commentPost')
 
     class Meta:
         database = DATABASE
